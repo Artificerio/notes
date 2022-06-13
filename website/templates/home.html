@@ -2,5 +2,24 @@
 {% block title %}This is the home page{% endblock %}
 
 {% block artem_block  %}
-<h2>This is the home page</h2>
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flash" id="notes">
+    {% for note in user.notes %} 
+        <li class="list-group-item"> 
+            {{ note.data }}
+            <button class="button" type="close" onClick="delete_note( {{ note.id }} )">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </li>
+    {% endfor %}
+</ul>
+<form method="post">
+    <textarea name="note" id="note" class="form-control"> </textarea>
+        <br />
+        <div class="center">
+            <button class="btn btn-primary" type="submit">
+                Add Note
+            </button>
+        </div>
+</form>
 {% endblock %}
